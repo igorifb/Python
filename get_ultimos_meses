@@ -1,0 +1,32 @@
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+
+
+def get_nome_mes(mes):
+  nome_mes = ''
+  if mes == 1: nome_mes = 'JAN'
+  elif  mes == 2:nome_mes = 'FEV'
+  elif  mes == 3:nome_mes = 'MAR'
+  elif  mes == 4:nome_mes = 'ABR'
+  elif  mes == 5:nome_mes = 'MAI'
+  elif  mes == 6:nome_mes = 'JUN'
+  elif  mes == 7:nome_mes = 'JUL'
+  elif  mes == 8:nome_mes = 'AGO'
+  elif  mes == 9:nome_mes = 'SET'
+  elif  mes == 10:nome_mes = 'OUT'
+  elif  mes == 11:nome_mes = 'NOV'
+  elif  mes == 12:nome_mes = 'DEZ'
+  return  nome_mes 
+  
+def get_ultimos_meses(start,num_meses):
+  months = []
+  date = datetime.strptime(start, '%Y-%m-%d').date()
+  while num_meses >= 1:
+      date = date - relativedelta(months=num_meses)
+      months.append(get_nome_mes(date.month))
+      num_meses = num_meses - 1
+      date = datetime.strptime(start, '%Y-%m-%d').date()
+
+  return months
+    
+get_ultimos_meses('2022-01-01',3)
